@@ -2,6 +2,6 @@
 {
     public interface IActionContext
     {
-        public IExecutionContext Get();
+        public IExecutionContext Get(string requestUri);
     }
 }

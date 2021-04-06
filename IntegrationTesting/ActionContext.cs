@@ -1,7 +1,21 @@
-﻿namespace IntegrationTesting
+﻿using System.Net.Http;
+
+namespace IntegrationTesting
 {
     internal class ActionContext : IActionContext
     {
-        public IExecutionContext Get() => new ExecutionContext();
+        private readonly HttpClient _httpClient;
+
+        public ActionContext()
+        {
+            _httpClient = new HttpClient();
+        }
+
+        public IExecutionContext Get(string requestUri)
+        {
+            var requestMessage = new HttpRequestMessage(HttpMethod.Get, requestUri);
+            var responseMessage = _httpClient.Send(requestMessage);
+            return new ExecutionContext(responseMessage);
+        }
     }
 }

@@ -1,7 +1,16 @@
-﻿namespace IntegrationTesting
+﻿using System.Net.Http;
+
+namespace IntegrationTesting
 {
     internal class ExecutionContext : IExecutionContext
     {
-        public IResponseContext Then() => new ResponseContext();
+        private readonly HttpResponseMessage _responseMessage;
+
+        public ExecutionContext(HttpResponseMessage responseMessage)
+        {
+            _responseMessage = responseMessage;
+        }
+
+        public IResponseContext Then() => new ResponseContext(_responseMessage);
     }
 }
