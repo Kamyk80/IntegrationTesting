@@ -10,7 +10,7 @@ namespace IntegrationTesting
 
         public ActionContext()
         {
-            _httpClient = new HttpClient();
+            _httpClient = new HttpClient(new LoggingHandler(new HttpClientHandler()));
             _requestMessage = new HttpRequestMessage();
         }
 

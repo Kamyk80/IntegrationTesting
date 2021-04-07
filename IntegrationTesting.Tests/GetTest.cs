@@ -23,7 +23,7 @@ namespace IntegrationTesting.Tests
         }
 
         [TestMethod]
-        public void ItShouldBePossibleToCreateGetTestWithExpressions()
+        public void ItShouldBePossibleToCreateGetTestByExpressions()
         {
             Given()
                 .Client(client => client.BaseAddress = new Uri("https://reqres.in"))
@@ -36,7 +36,7 @@ namespace IntegrationTesting.Tests
         }
 
         [TestMethod]
-        public void ItShouldBePossibleToCreateSimpleGetTest()
+        public void ItShouldBePossibleToCreateGetTestWithoutGiven()
         {
             When()
                 .Get("https://reqres.in/api/users")
