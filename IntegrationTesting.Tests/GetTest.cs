@@ -4,7 +4,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static IntegrationTesting.TestCase;
 
-namespace IntegrationTestingTests
+namespace IntegrationTesting.Tests
 {
     [TestClass]
     public class GetTest

@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTesting", "IntegrationTesting\IntegrationTesting.csproj", "{B4A1559B-C488-42D1-8DD5-E4FDC5288687}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTestingTests", "IntegrationTestingTests\IntegrationTestingTests.csproj", "{ED152E88-54E9-408D-B76F-A65CEF2776F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTesting.Tests", "IntegrationTesting.Tests\IntegrationTesting.Tests.csproj", "{ED152E88-54E9-408D-B76F-A65CEF2776F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

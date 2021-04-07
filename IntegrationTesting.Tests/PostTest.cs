@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json;
 using static IntegrationTesting.TestCase;
 
-namespace IntegrationTestingTests
+namespace IntegrationTesting.Tests
 {
     [TestClass]
     public class PostTest
