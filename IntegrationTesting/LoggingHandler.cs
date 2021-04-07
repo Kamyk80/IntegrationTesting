@@ -9,28 +9,45 @@ namespace IntegrationTesting
 {
     internal class LoggingHandler : DelegatingHandler
     {
-        public LoggingHandler(HttpMessageHandler innerHandler) : base(innerHandler)
+        private readonly bool _requestLogging;
+        private readonly bool _responseLogging;
+
+        public LoggingHandler(HttpMessageHandler innerHandler, bool requestLogging, bool responseLogging) : base(innerHandler)
         {
+            _requestLogging = requestLogging;
+            _responseLogging = responseLogging;
         }
 
         protected override HttpResponseMessage Send(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            LogRequest(request);
+            if (_requestLogging)
+            {
+                LogRequest(request);
+            }
 
             var response = base.Send(request, cancellationToken);
 
-            LogResponse(response);
+            if (_responseLogging)
+            {
+                LogResponse(response);
+            }
 
             return response;
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            LogRequest(request);
+            if (_requestLogging)
+            {
+                LogRequest(request);
+            }
 
             var response = await base.SendAsync(request, cancellationToken);
 
-            LogResponse(response);
+            if (_responseLogging)
+            {
+                LogResponse(response);
+            }
 
             return response;
         }

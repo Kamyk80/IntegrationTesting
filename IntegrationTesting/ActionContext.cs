@@ -8,9 +8,9 @@ namespace IntegrationTesting
         private readonly HttpClient _httpClient;
         private readonly HttpRequestMessage _requestMessage;
 
-        public ActionContext()
+        public ActionContext(ITestConfig config)
         {
-            _httpClient = new HttpClient(new LoggingHandler(new HttpClientHandler()));
+            _httpClient = new HttpClient(new LoggingHandler(new HttpClientHandler(), config.RequestLogging, config.ResponseLogging));
             _requestMessage = new HttpRequestMessage();
         }
 
