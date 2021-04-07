@@ -7,10 +7,10 @@ using static IntegrationTesting.TestCase;
 namespace IntegrationTestingTests
 {
     [TestClass]
-    public class SimpleTest
+    public class GetTest
     {
         [TestMethod]
-        public void ItShouldBePossibleToCreateGivenTest()
+        public void ItShouldBePossibleToCreateGetTest()
         {
             Given()
                 .BaseAddress("https://reqres.in")
@@ -23,7 +23,7 @@ namespace IntegrationTestingTests
         }
 
         [TestMethod]
-        public void ItShouldBePossibleToCreateGivenTestWithExpressions()
+        public void ItShouldBePossibleToCreateGetTestWithExpressions()
         {
             Given()
                 .Client(client => client.BaseAddress = new Uri("https://reqres.in"))
@@ -36,7 +36,7 @@ namespace IntegrationTestingTests
         }
 
         [TestMethod]
-        public void ItShouldBePossibleToCreateWhenTest()
+        public void ItShouldBePossibleToCreateSimpleGetTest()
         {
             When()
                 .Get("https://reqres.in/api/users")

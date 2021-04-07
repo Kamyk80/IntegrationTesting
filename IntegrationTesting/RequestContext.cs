@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace IntegrationTesting
 {
@@ -33,6 +34,13 @@ namespace IntegrationTesting
             _requestMessage.Headers.Add(name, values);
 
             return this;
+        }
+
+        public IRequestContext Content<TModel>(TModel model)
+        {
+            var content = JsonConvert.SerializeObject(model);
+
+            return Content(content);
         }
 
         public IRequestContext Content(string content)

@@ -20,9 +20,13 @@ namespace IntegrationTesting
             _requestMessage = requestMessage;
         }
 
-        public IExecutionContext Get(string requestUri)
+        public IExecutionContext Get(string requestUri) => Send(HttpMethod.Get, requestUri);
+
+        public IExecutionContext Post(string requestUri) => Send(HttpMethod.Post, requestUri);
+
+        public IExecutionContext Send(HttpMethod method, string requestUri)
         {
-            _requestMessage.Method = HttpMethod.Get;
+            _requestMessage.Method = method;
             _requestMessage.RequestUri = new Uri(requestUri, UriKind.RelativeOrAbsolute);
 
             var responseMessage = _httpClient.Send(_requestMessage);
