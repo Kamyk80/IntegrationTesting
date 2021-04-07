@@ -16,6 +16,7 @@ namespace IntegrationTesting
         public IResponseContext StatusCode(Action<HttpStatusCode> action)
         {
             action(_responseMessage.StatusCode);
+
             return this;
         }
     }
