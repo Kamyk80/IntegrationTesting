@@ -2,6 +2,6 @@
 {
     public interface IExecutionContext
     {
-        IResponseContext Then();
+        public IResponseContext Then();
     }
 }

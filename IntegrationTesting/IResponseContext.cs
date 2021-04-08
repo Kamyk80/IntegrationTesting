@@ -5,6 +5,6 @@ namespace IntegrationTesting
 {
     public interface IResponseContext
     {
-        IResponseContext StatusCode(Action<HttpStatusCode> action);
+        public IResponseContext StatusCode(Action<HttpStatusCode> action);
     }
 }

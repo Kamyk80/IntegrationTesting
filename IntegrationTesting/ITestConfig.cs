@@ -2,8 +2,8 @@
 {
     public interface ITestConfig
     {
-        bool RequestLogging { get; set; }
+        public bool RequestLogging { get; set; }
 
-        bool ResponseLogging { get; set; }
+        public bool ResponseLogging { get; set; }
     }
 }

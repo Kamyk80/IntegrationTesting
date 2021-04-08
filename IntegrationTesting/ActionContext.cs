@@ -24,6 +24,12 @@ namespace IntegrationTesting
 
         public IExecutionContext Post(string requestUri) => Send(HttpMethod.Post, requestUri);
 
+        public IExecutionContext Put(string requestUri) => Send(HttpMethod.Put, requestUri);
+
+        public IExecutionContext Patch(string requestUri) => Send(HttpMethod.Patch, requestUri);
+
+        public IExecutionContext Delete(string requestUri) => Send(HttpMethod.Delete, requestUri);
+
         public IExecutionContext Send(HttpMethod method, string requestUri)
         {
             _requestMessage.Method = method;
