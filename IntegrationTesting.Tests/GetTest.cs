@@ -19,11 +19,12 @@ namespace IntegrationTesting.Tests
             .When()
                 .Get("/api/users")
             .Then()
-                .StatusCode(code => code.Should().Be(HttpStatusCode.OK));
+                .StatusCode(code => code.Should().Be(HttpStatusCode.OK))
+                .JsonObject(json => ((int) json.page).Should().Be(1));
         }
 
         [TestMethod]
-        public void ItShouldBePossibleToCreateGetTestByExpressions()
+        public void ItShouldBePossibleToCreateGetTestUsingMessages()
         {
             Given()
                 .Client(client => client.BaseAddress = new Uri("https://reqres.in"))
@@ -32,7 +33,7 @@ namespace IntegrationTesting.Tests
             .When()
                 .Get("/api/users")
             .Then()
-                .StatusCode(code => code.Should().Be(HttpStatusCode.OK));
+                .Message(message => message.StatusCode.Should().Be(HttpStatusCode.OK));
         }
 
         [TestMethod]
