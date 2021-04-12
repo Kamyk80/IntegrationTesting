@@ -124,6 +124,19 @@ namespace IntegrationTesting
                 sb.AppendLine("Headers: <none>");
             }
 
+            if (response.Content.Headers.Any())
+            {
+                sb.AppendLine("Content headers:");
+                foreach (var (name, values) in response.Content.Headers)
+                {
+                    sb.AppendLine($"  {name}: {string.Join(", ", values)}");
+                }
+            }
+            else
+            {
+                sb.AppendLine("Content headers: <none>");
+            }
+
             var content = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
 
             if (!string.IsNullOrEmpty(content))

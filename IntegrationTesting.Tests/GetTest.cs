@@ -20,6 +20,8 @@ namespace IntegrationTesting.Tests
                 .Get("/api/users")
             .Then()
                 .StatusCode(code => code.Should().Be(HttpStatusCode.OK))
+                .Header("Access-Control-Allow-Origin", values => values.Should().Contain("*"))
+                .ContentHeader("Content-Type", values => values.Should().Contain("application/json; charset=utf-8"))
                 .JsonObject(json => ((int) json.page).Should().Be(1));
         }
 
@@ -33,6 +35,8 @@ namespace IntegrationTesting.Tests
             .When()
                 .Get("/api/users")
             .Then()
+                .Message(message => message.Headers.GetValues("Access-Control-Allow-Origin").Should().Contain("*"))
+                .Message(message => message.Content.Headers.GetValues("Content-Type").Should().Contain("application/json; charset=utf-8"))
                 .Message(message => message.StatusCode.Should().Be(HttpStatusCode.OK));
         }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
@@ -19,6 +20,20 @@ namespace IntegrationTesting
         public IResponseContext StatusCode(Action<HttpStatusCode> action)
         {
             action(_responseMessage.StatusCode);
+
+            return this;
+        }
+
+        public IResponseContext Header(string name, Action<IEnumerable<string>> action)
+        {
+            action(_responseMessage.Headers.GetValues(name));
+
+            return this;
+        }
+
+        public IResponseContext ContentHeader(string name, Action<IEnumerable<string>> action)
+        {
+            action(_responseMessage.Content.Headers.GetValues(name));
 
             return this;
         }
