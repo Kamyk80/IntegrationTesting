@@ -18,5 +18,7 @@ namespace IntegrationTesting
         public IResponseContext JsonArray(Action<dynamic> action);
 
         public IResponseContext Message(Action<HttpResponseMessage> action);
+
+        public IResponseContext Content(Action<string> action);
     }
 }

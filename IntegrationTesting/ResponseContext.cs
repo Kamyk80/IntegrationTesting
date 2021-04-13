@@ -49,9 +49,9 @@ namespace IntegrationTesting
 
         public IResponseContext JsonArray(Action<dynamic> action)
         {
-            var jsonObject = JArray.Parse(_responseContent);
+            var jsonArray = JArray.Parse(_responseContent);
 
-            action(jsonObject);
+            action(jsonArray);
 
             return this;
         }
@@ -59,6 +59,13 @@ namespace IntegrationTesting
         public IResponseContext Message(Action<HttpResponseMessage> action)
         {
             action(_responseMessage);
+
+            return this;
+        }
+
+        public IResponseContext Content(Action<string> action)
+        {
+            action(_responseContent);
 
             return this;
         }
