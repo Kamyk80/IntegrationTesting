@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace IntegrationTesting
@@ -34,6 +35,15 @@ namespace IntegrationTesting
         public IResponseContext ContentHeader(string name, Action<IEnumerable<string>> action)
         {
             action(_responseMessage.Content.Headers.GetValues(name));
+
+            return this;
+        }
+
+        public IResponseContext JsonModel<TModel>(Action<TModel> action)
+        {
+            var jsonModel = JsonConvert.DeserializeObject<TModel>(_responseContent);
+
+            action(jsonModel);
 
             return this;
         }

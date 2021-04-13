@@ -13,6 +13,8 @@ namespace IntegrationTesting
 
         public IResponseContext ContentHeader(string name, Action<IEnumerable<string>> action);
 
+        public IResponseContext JsonModel<TModel>(Action<TModel> action);
+
         public IResponseContext JsonObject(Action<dynamic> action);
 
         public IResponseContext JsonArray(Action<dynamic> action);

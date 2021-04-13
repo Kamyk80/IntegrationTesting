@@ -1,6 +1,7 @@
 using System;
 using System.Net;
 using FluentAssertions;
+using IntegrationTesting.Tests.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static IntegrationTesting.TestCase;
 
@@ -21,7 +22,34 @@ namespace IntegrationTesting.Tests
             .Then()
                 .StatusCode(code => code.Should().Be(HttpStatusCode.OK))
                 .Header("Access-Control-Allow-Origin", values => values.Should().Contain("*"))
-                .ContentHeader("Content-Type", values => values.Should().Contain("application/json; charset=utf-8"))
+                .ContentHeader("Content-Type", values => values.Should().Contain("application/json; charset=utf-8"));
+        }
+
+        [TestMethod]
+        public void ItShouldBePossibleToCreateGetTestDeserializingToModel()
+        {
+            Given()
+                .BaseAddress("https://reqres.in")
+                .Timeout(TimeSpan.FromSeconds(10))
+                .Header("Accept", "application/json")
+            .When()
+                .Get("/api/users")
+            .Then()
+                .StatusCode(code => code.Should().Be(HttpStatusCode.OK))
+                .JsonModel<UsersResponse>(model => model.Page.Should().Be(1));
+        }
+
+        [TestMethod]
+        public void ItShouldBePossibleToCreateGetTestDeserializingToDynamic()
+        {
+            Given()
+                .BaseAddress("https://reqres.in")
+                .Timeout(TimeSpan.FromSeconds(10))
+                .Header("Accept", "application/json")
+            .When()
+                .Get("/api/users")
+            .Then()
+                .StatusCode(code => code.Should().Be(HttpStatusCode.OK))
                 .JsonObject(json => ((int) json.page).Should().Be(1));
         }
 
