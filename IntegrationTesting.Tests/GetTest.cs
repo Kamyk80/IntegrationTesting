@@ -1,5 +1,6 @@
 using System;
 using System.Net;
+using System.Net.Http;
 using FluentAssertions;
 using IntegrationTesting.Tests.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -54,18 +55,19 @@ namespace IntegrationTesting.Tests
         }
 
         [TestMethod]
-        public void ItShouldBePossibleToCreateGetTestUsingMessages()
+        public void ItShouldBePossibleToCreateGetTestUsingDirectObjects()
         {
             Given()
                 .Client(client => client.BaseAddress = new Uri("https://reqres.in"))
                 .Client(client => client.Timeout = TimeSpan.FromSeconds(10))
                 .Message(message => message.Headers.Add("Accept", "application/json"))
             .When()
-                .Get("/api/users")
+                .Send(HttpMethod.Get, "/api/users")
             .Then()
+                .Message(message => message.StatusCode.Should().Be(HttpStatusCode.OK))
                 .Message(message => message.Headers.GetValues("Access-Control-Allow-Origin").Should().Contain("*"))
                 .Message(message => message.Content.Headers.GetValues("Content-Type").Should().Contain("application/json; charset=utf-8"))
-                .Message(message => message.StatusCode.Should().Be(HttpStatusCode.OK));
+                .Content(content => content.Should().Contain("\"page\":1"));
         }
 
         [TestMethod]

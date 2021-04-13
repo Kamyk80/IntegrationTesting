@@ -8,11 +8,11 @@ namespace IntegrationTesting
 
         public IExecutionContext Post(string requestUri);
 
-        public IExecutionContext Put(string requestUri) => Send(HttpMethod.Put, requestUri);
+        public IExecutionContext Put(string requestUri);
 
-        public IExecutionContext Patch(string requestUri) => Send(HttpMethod.Patch, requestUri);
+        public IExecutionContext Patch(string requestUri);
 
-        public IExecutionContext Delete(string requestUri) => Send(HttpMethod.Delete, requestUri);
+        public IExecutionContext Delete(string requestUri);
 
         public IExecutionContext Send(HttpMethod method, string requestUri);
     }

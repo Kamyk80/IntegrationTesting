@@ -27,14 +27,18 @@ namespace IntegrationTesting
 
         public IResponseContext Header(string name, Action<IEnumerable<string>> action)
         {
-            action(_responseMessage.Headers.GetValues(name));
+            var values = _responseMessage.Headers.GetValues(name);
+
+            action(values);
 
             return this;
         }
 
         public IResponseContext ContentHeader(string name, Action<IEnumerable<string>> action)
         {
-            action(_responseMessage.Content.Headers.GetValues(name));
+            var values = _responseMessage.Content.Headers.GetValues(name);
+
+            action(values);
 
             return this;
         }

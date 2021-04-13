@@ -36,7 +36,7 @@ namespace IntegrationTesting
             return this;
         }
 
-        public IRequestContext Content<TModel>(TModel model)
+        public IRequestContext Content(object model)
         {
             var content = JsonConvert.SerializeObject(model);
 

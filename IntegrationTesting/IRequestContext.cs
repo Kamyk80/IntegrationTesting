@@ -11,7 +11,7 @@ namespace IntegrationTesting
 
         public IRequestContext Header(string name, params string[] values);
 
-        public IRequestContext Content<TModel>(TModel model);
+        public IRequestContext Content(object model);
 
         public IRequestContext Content(string content);
 

@@ -15,7 +15,6 @@ namespace IntegrationTesting.Tests
             Given()
                 .BaseAddress("https://reqres.in")
                 .Timeout(TimeSpan.FromSeconds(10))
-                .Header("Accept", "application/json")
             .When()
                 .Delete("/api/users/2")
             .Then()
