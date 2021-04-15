@@ -43,6 +43,13 @@ namespace IntegrationTesting
             return this;
         }
 
+        public IResponseContext Content(Action<string> action)
+        {
+            action(_responseContent);
+
+            return this;
+        }
+
         public IResponseContext JsonModel<TModel>(Action<TModel> action)
         {
             var jsonModel = JsonConvert.DeserializeObject<TModel>(_responseContent);
@@ -73,13 +80,6 @@ namespace IntegrationTesting
         public IResponseContext Message(Action<HttpResponseMessage> action)
         {
             action(_responseMessage);
-
-            return this;
-        }
-
-        public IResponseContext Content(Action<string> action)
-        {
-            action(_responseContent);
 
             return this;
         }

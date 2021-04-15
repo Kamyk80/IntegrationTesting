@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using FluentAssertions;
+using IntegrationTesting.SchemaValidation;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static IntegrationTesting.TestCase;
 

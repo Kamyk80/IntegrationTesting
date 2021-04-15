@@ -1,6 +1,6 @@
 ﻿namespace IntegrationTesting
 {
-    internal class TestConfig : ITestConfig
+    internal class TestConfiguration : ITestConfiguration
     {
         public bool RequestLogging { get; set; }
 

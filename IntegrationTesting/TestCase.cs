@@ -1,11 +1,24 @@
 ﻿namespace IntegrationTesting
 {
+    /// <summary>
+    /// Static class with entry points to everything.
+    /// </summary>
     public static class TestCase
     {
-        public static ITestConfig Config { get; } = new TestConfig();
+        /// <summary>
+        /// Global test case configuration.
+        /// </summary>
+        public static ITestConfiguration Configuration { get; } = new TestConfiguration();
 
-        public static IRequestContext Given() => new RequestContext(Config);
+        /// <summary>
+        /// Starts test case chain.
+        /// </summary>
+        public static IRequestContext Given() => new RequestContext(Configuration);
 
-        public static IActionContext When() => new ActionContext(Config);
+        /// <summary>
+        /// Starts test case chain.
+        /// Given() can be omitted.
+        /// </summary>
+        public static IActionContext When() => new ActionContext(Configuration);
     }
 }

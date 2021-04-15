@@ -9,8 +9,8 @@ namespace IntegrationTesting.Tests
         [AssemblyInitialize]
         public static void AssemblyInit(TestContext context)
         {
-            Config.RequestLogging = true;
-            Config.ResponseLogging = true;
+            Configuration.RequestLogging = true;
+            Configuration.ResponseLogging = true;
         }
     }
 }

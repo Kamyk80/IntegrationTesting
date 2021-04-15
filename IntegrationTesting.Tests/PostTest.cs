@@ -11,20 +11,6 @@ namespace IntegrationTesting.Tests
     public class PostTest
     {
         [TestMethod]
-        public void ItShouldBePossibleToCreatePostStringTest()
-        {
-            Given()
-                .BaseAddress("https://reqres.in")
-                .Timeout(TimeSpan.FromSeconds(10))
-                .Header("Accept", "application/json")
-                .Content("{\"name\":\"morpheus\",\"job\":\"leader\"}")
-            .When()
-                .Post("/api/users")
-            .Then()
-                .StatusCode(code => code.Should().Be(HttpStatusCode.Created));
-        }
-
-        [TestMethod]
         public void ItShouldBePossibleToCreatePostObjectTest()
         {
             Given()
@@ -46,6 +32,20 @@ namespace IntegrationTesting.Tests
                 .Timeout(TimeSpan.FromSeconds(10))
                 .Header("Accept", "application/json")
                 .Content(new UserRequest {Name = "morpheus", Job = "leader"})
+            .When()
+                .Post("/api/users")
+            .Then()
+                .StatusCode(code => code.Should().Be(HttpStatusCode.Created));
+        }
+
+        [TestMethod]
+        public void ItShouldBePossibleToCreatePostStringTest()
+        {
+            Given()
+                .BaseAddress("https://reqres.in")
+                .Timeout(TimeSpan.FromSeconds(10))
+                .Header("Accept", "application/json")
+                .Content("{\"name\":\"morpheus\",\"job\":\"leader\"}")
             .When()
                 .Post("/api/users")
             .Then()
