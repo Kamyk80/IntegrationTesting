@@ -38,11 +38,27 @@ The test case consists of 3 parts:
 
 For best experience, declare using `TestCase` class directly by the following statement:
 
-```csharp
+```
 using static IntegrationTesting.TestCase;
 ```
 
 ### Configuration
+
+```csharp
+Configuration.BaseAddress = new Uri("https://reqres.in");
+```
+
+Sets base address for all test cases.
+\
+It can be also set for each test case individually.
+
+```csharp
+Configuration.Timeout = TimeSpan.FromSeconds(10);
+```
+
+Sets timeout for all test cases.
+\
+It can be also set for each test case individually.
 
 ```csharp
 Configuration.RequestLogging = true;

@@ -11,8 +11,17 @@ namespace IntegrationTesting
 
         public RequestContext(ITestConfiguration configuration)
         {
-            _httpClient = new HttpClient(new LoggingHandler(new HttpClientHandler(), configuration.RequestLogging, configuration.ResponseLogging));
+            _httpClient = new HttpClient(new LoggingHandler(new HttpClientHandler(), configuration.RequestLogging, configuration.ResponseLogging))
+            {
+                BaseAddress = configuration.BaseAddress
+            };
+
             _requestMessage = new HttpRequestMessage();
+
+            if (configuration.Timeout.HasValue)
+            {
+                _httpClient.Timeout = configuration.Timeout.Value;
+            }
         }
 
         public IRequestContext BaseAddress(string baseAddress)
