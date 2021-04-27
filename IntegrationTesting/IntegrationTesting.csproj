@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <PackageId>Kamyko.IntegrationTesting</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Marcin Kamiński</Authors>
+    <Company>Kamyko Software</Company>
+    <Product>IntegrationTesting</Product>
+    <Description>Simple REST services integration testing suite</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Kamyk80/IntegrationTesting</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
