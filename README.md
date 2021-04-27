@@ -4,6 +4,14 @@ This is a simple REST services integration testing suite, built with [.NET 5.0](
 
 Currently supports JSON based services only.
 
+## Installation
+
+Install with [NuGet Package Manager](https://www.nuget.org/packages/Kamyko.IntegrationTesting/):
+
+```
+PM> Install-Package Kamyko.IntegrationTesting
+```
+
 ## Base assumptions
 
 - Simple and clean code, easily understandable by anyone willing to extend it.
