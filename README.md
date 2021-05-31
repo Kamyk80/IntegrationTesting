@@ -99,6 +99,14 @@ Sets base address for a test case.
 Sets timeout for a test case.
 
 ```csharp
+.Query("page", "1")
+```
+
+Sets query string parameter for a test case.
+\
+Query string parameters can be set either by URI or by this method, but not both.
+
+```csharp
 .Header("Accept", "application/json")
 ```
 

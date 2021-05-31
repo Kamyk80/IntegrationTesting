@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using Newtonsoft.Json;
 
@@ -8,6 +9,7 @@ namespace IntegrationTesting
     {
         private readonly HttpClient _httpClient;
         private readonly HttpRequestMessage _requestMessage;
+        private readonly IList<(string, string)> _queryParams;
 
         public RequestContext(ITestConfiguration configuration)
         {
@@ -22,6 +24,8 @@ namespace IntegrationTesting
             {
                 _httpClient.Timeout = configuration.Timeout.Value;
             }
+
+            _queryParams = new List<(string, string)>();
         }
 
         public IRequestContext BaseAddress(string baseAddress)
@@ -34,6 +38,13 @@ namespace IntegrationTesting
         public IRequestContext Timeout(TimeSpan timeout)
         {
             _httpClient.Timeout = timeout;
+
+            return this;
+        }
+
+        public IRequestContext Query(string name, string value)
+        {
+            _queryParams.Add((name, value));
 
             return this;
         }
@@ -73,6 +84,6 @@ namespace IntegrationTesting
             return this;
         }
 
-        public IActionContext When() => new ActionContext(_httpClient, _requestMessage);
+        public IActionContext When() => new ActionContext(_httpClient, _requestMessage, _queryParams);
     }
 }

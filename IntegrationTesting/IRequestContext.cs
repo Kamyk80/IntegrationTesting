@@ -19,6 +19,12 @@ namespace IntegrationTesting
         public IRequestContext Timeout(TimeSpan timeout);
 
         /// <summary>
+        /// Sets query string parameter for a test case.
+        /// Query string parameters can be set either by URI or this method but not both.
+        /// </summary>
+        public IRequestContext Query(string name, string value);
+
+        /// <summary>
         /// Sets header for a test case.
         /// Multi-value headers are supported.
         /// </summary>

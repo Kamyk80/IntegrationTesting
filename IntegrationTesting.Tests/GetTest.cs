@@ -27,6 +27,20 @@ namespace IntegrationTesting.Tests
         }
 
         [TestMethod]
+        public void ItShouldBePossibleToCreateGetWithQueryTest()
+        {
+            Given()
+                .BaseAddress("https://reqres.in")
+                .Timeout(TimeSpan.FromSeconds(10))
+                .Query("page", "1")
+                .Header("Accept", "application/json")
+            .When()
+                .Get("/api/users")
+            .Then()
+                .StatusCode(code => code.Should().Be(HttpStatusCode.OK));
+        }
+
+        [TestMethod]
         public void ItShouldBePossibleToCreateGetTestDeserializingToModel()
         {
             Given()
