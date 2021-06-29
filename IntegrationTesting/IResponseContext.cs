@@ -53,5 +53,25 @@ namespace IntegrationTesting
         /// Not intended to be used in test cases directly, intended to implement extension methods based on it instead.
         /// </summary>
         public IResponseContext Message(Action<HttpResponseMessage> action);
+
+        /// <summary>
+        /// Returns raw content.
+        /// </summary>
+        public string ReturnContent();
+        
+        /// <summary>
+        /// Returns content deserialized to concrete model class.
+        /// </summary>
+        public TModel ReturnJsonModel<TModel>();
+
+        /// <summary>
+        /// Returns value from content deserialized to JSON object.
+        /// </summary>
+        public TReturn ReturnFromJsonObject<TReturn>(Func<dynamic, TReturn> func);
+
+        /// <summary>
+        /// Returns value from content deserialized to JSON array.
+        /// </summary>
+        public TReturn ReturnFromJsonArray<TReturn>(Func<dynamic, TReturn> func);
     }
 }

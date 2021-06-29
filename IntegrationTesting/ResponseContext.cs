@@ -83,5 +83,31 @@ namespace IntegrationTesting
 
             return this;
         }
+
+        public string ReturnContent()
+        {
+            return _responseContent;
+        }
+
+        public TModel ReturnJsonModel<TModel>()
+        {
+            var jsonModel = JsonConvert.DeserializeObject<TModel>(_responseContent);
+
+            return jsonModel;
+        }
+
+        public TReturn ReturnFromJsonObject<TReturn>(Func<dynamic, TReturn> func)
+        {
+            var jsonObject = JObject.Parse(_responseContent);
+
+            return func(jsonObject);
+        }
+
+        public TReturn ReturnFromJsonArray<TReturn>(Func<dynamic, TReturn> func)
+        {
+            var jsonArray = JArray.Parse(_responseContent);
+
+            return func(jsonArray);
+        }
     }
 }

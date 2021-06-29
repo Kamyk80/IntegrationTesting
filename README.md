@@ -21,7 +21,7 @@ PM> Install-Package Kamyko.IntegrationTesting
 
 ## Example test case
 
-```csharp
+```c#
 Given()
     .BaseAddress("https://reqres.in")
     .Header("Accept", "application/json")
@@ -52,7 +52,7 @@ using static IntegrationTesting.TestCase;
 
 ### Configuration
 
-```csharp
+```c#
 Configuration.BaseAddress = new Uri("https://reqres.in");
 ```
 
@@ -60,7 +60,7 @@ Sets base address for all test cases.
 \
 It can be also set for each test case individually.
 
-```csharp
+```c#
 Configuration.Timeout = TimeSpan.FromSeconds(10);
 ```
 
@@ -68,13 +68,13 @@ Sets timeout for all test cases.
 \
 It can be also set for each test case individually.
 
-```csharp
+```c#
 Configuration.RequestLogging = true;
 ```
 
 Enables request logging.
 
-```csharp
+```c#
 Configuration.ResponseLogging = true;
 ```
 
@@ -86,19 +86,19 @@ Configuration is global for all test cases and is intended to be placed in your 
 
 ### Given clause
 
-```csharp
+```c#
 .BaseAddress("https://reqres.in")
 ```
 
 Sets base address for a test case.
 
-```csharp
+```c#
 .Timeout(TimeSpan.FromSeconds(10))
 ```
 
 Sets timeout for a test case.
 
-```csharp
+```c#
 .Query("page", "1")
 ```
 
@@ -106,7 +106,7 @@ Sets query string parameter for a test case.
 \
 Query string parameters can be set either by URI or by this method, but not both.
 
-```csharp
+```c#
 .Header("Accept", "application/json")
 ```
 
@@ -114,7 +114,7 @@ Sets header for a test case.
 \
 Multi-value headers are supported.
 
-```csharp
+```c#
 .Content(new {name = "morpheus", job = "leader"})
 ```
 
@@ -122,13 +122,13 @@ Sets content for a test case.
 \
 Supports anonymous objects and concrete model instances.
 
-```csharp
+```c#
 .Content("{\"name\":\"morpheus\",\"job\":\"leader\"}")
 ```
 
 Sets raw content for a test case.
 
-```csharp
+```c#
 .Client(client => client.BaseAddress = new Uri("https://reqres.in"))
 ```
 
@@ -136,7 +136,7 @@ Exposes HttpClient instance for any operation which isn't implemented otherwise.
 \
 Not intended to be used in test cases directly, intended to implement extension methods based on it instead.
 
-```csharp
+```c#
 .Message(message => message.Headers.Add("Accept", "application/json"))
 ```
 
@@ -148,37 +148,37 @@ Given clause can be omitted and simple test cases can start directly with When.
 
 ### When clause
 
-```csharp
+```c#
 .Get("/api/users")
 ```
 
 Makes GET request.
 
-```csharp
+```c#
 .Post("/api/users")
 ```
 
 Makes POST request.
 
-```csharp
+```c#
 .Put("/api/users/2")
 ```
 
 Makes PUT request.
 
-```csharp
+```c#
 .Patch("/api/users/2")
 ```
 
 Makes PATCH request.
 
-```csharp
+```c#
 .Delete("/api/users/2")
 ```
 
 Makes DELETE request.
 
-```csharp
+```c#
 .Send(HttpMethod.Head, "/api/users")
 ```
 
@@ -190,13 +190,13 @@ URI can be either relative or absolute (when base address is not used).
 
 This suite doesn't implement any assertions itself. It allows you to use any test framework and assertions instead. Examples below use [FluentAssertions](https://fluentassertions.com/).
 
-```csharp
+```c#
 .StatusCode(code => code.Should().Be(HttpStatusCode.OK))
 ```
 
 Inspects status code.
 
-```csharp
+```c#
 .Header("Access-Control-Allow-Origin", values => values.Should().Contain("*"))
 ```
 
@@ -204,7 +204,7 @@ Inspects header value.
 \
 Multi-value headers are supported.
 
-```csharp
+```c#
 .ContentHeader("Content-Type", values => values.Should().Contain("application/json; charset=utf-8"))
 ```
 
@@ -214,31 +214,31 @@ HttpClient stores response headers separately.
 \
 Multi-value headers are supported.
 
-```csharp
+```c#
 .Content(content => content.Should().Contain("\"page\":1"))
 ```
 
 Inspects raw content.
 
-```csharp
+```c#
 .JsonModel<UsersResponse>(model => model.Page.Should().Be(1))
 ```
 
 Inspects content deserialized to concrete model class.
 
-```csharp
+```c#
 .JsonObject(json => ((int) json.page).Should().Be(1))
 ```
 
 Inspects content deserialized to JSON object as dynamic type.
 
-```csharp
+```c#
 .JsonArray(json => ((int) json[0].page).Should().Be(1))
 ```
 
 Inspects content deserialized to JSON array as dynamic type.
 
-```csharp
+```c#
 .Message(message => message.StatusCode.Should().Be(HttpStatusCode.OK))
 ```
 
@@ -246,15 +246,39 @@ Inspects HttpResponseMessage for any operation which isn't implemented otherwise
 \
 Not intended to be used in test cases directly, intended to implement extension methods based on it instead.
 
+```c#
+.ReturnContent();
+```
+
+Returns raw content.
+
+```c#
+.ReturnJsonModel<CreateResponse>();
+```
+
+Returns content deserialized to concrete model class.
+
+```c#
+.ReturnFromJsonObject<int>(json => json.id);
+```
+
+Returns value from content deserialized to JSON object.
+
+```c#
+.ReturnFromJsonArray<int>(json => json[0].id);
+```
+
+Returns value from content deserialized to JSON array.
+
 Schema validation described below is implemented as extension methods, so you can use it as an example how to implement your own extensions.
 
-```csharp
+```c#
 .ValidateJsonObjectSchema(SchemaString, result => result.Should().BeTrue());
 ```
 
 Validates JSON object schema and exposes validation result for inspection.
 
-```csharp
+```c#
 .ValidateJsonArraySchema(SchemaString, result => result.Should().BeTrue());
 ```
 
